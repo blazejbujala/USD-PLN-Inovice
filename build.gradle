@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		h2Version = '2.1.214'
+		mapStructVersion = '1.5.3.Final'
+		flywayVersion = '8.5.2'
+		springfoxVersion = '3.0.0'
+		springFoxStarterVersion = '3.0.0'
+		springFoxUiVersion = '3.0.0'
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+}
+
+group = 'com.exchange'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "io.springfox:springfox-boot-starter:${springfoxVersion}"
+	implementation "org.flywaydb:flyway-core:${flywayVersion}"
+	implementation "com.h2database:h2:${h2Version}"
+	implementation "io.springfox:springfox-boot-starter:${springFoxStarterVersion}"
+	implementation "io.springfox:springfox-swagger-ui:${springFoxUiVersion}"
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "com.h2database:h2:${h2Version}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

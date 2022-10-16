@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: jpa
+  flyway:
+    enabled: true
+  security:
+    user:
+      name: bb
+      password: Pass123
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    root: INFO
+    org.springframework.boot: WARN
+    pl.futurecollars.invoicing: INFO
+    pl.futurecollars.invoicing.db: DEBUG
